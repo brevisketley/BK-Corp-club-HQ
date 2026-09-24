@@ -1,0 +1,18 @@
+{
+  "id":"marketing-campaign",
+  "name":"Client Marketing Campaign",
+  "trigger":"owner_request",
+  "orchestrator":"hannes",
+  "steps":[
+    {"id":"research","department":"research","output":"market_and_competitor_brief"},
+    {"id":"strategy","department":"marketing","output":"campaign_strategy"},
+    {"id":"content","department":"creative","output":"campaign_assets_and_copy"},
+    {"id":"execution","department":"marketing","output":"published_or_queued_campaign"},
+    {"id":"sales","department":"sales","output":"lead_pipeline_actions"},
+    {"id":"service","department":"customer-service","output":"lead_response_and_followup"},
+    {"id":"analytics","department":"finance","output":"commercial_and_performance_report"},
+    {"id":"learning","department":"client-operations","output":"client_brain_update"}
+  ],
+  "approvalGates":["strategy_before_launch","external_communication_when_required"],
+  "completion":"Hannes verifies outputs, records evidence, updates task status and writes reusable learnings to the Client Brain."
+}
