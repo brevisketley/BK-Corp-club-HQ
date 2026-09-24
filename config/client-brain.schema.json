@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"BK Corp Club Client Brain",
+  "type":"object",
+  "required":["client","brand","audience","commercial","rules","knowledge","learning"],
+  "properties":{
+    "client":{"type":"object","properties":{"name":{"type":"string"},"industry":{"type":"string"},"locations":{"type":"array","items":{"type":"string"}},"website":{"type":"string"}}},
+    "brand":{"type":"object","properties":{"voice":{"type":"string"},"tone":{"type":"string"},"positioning":{"type":"string"},"visualIdentity":{"type":"object"}}},
+    "audience":{"type":"object","properties":{"icp":{"type":"string"},"personas":{"type":"array"},"painPoints":{"type":"array"},"buyingTriggers":{"type":"array"}}},
+    "commercial":{"type":"object","properties":{"offers":{"type":"array"},"pricing":{"type":"array"},"callsToAction":{"type":"array"}}},
+    "rules":{"type":"object","properties":{"approvedClaims":{"type":"array"},"prohibitedClaims":{"type":"array"},"complianceRequirements":{"type":"array"},"approvalRequiredFor":{"type":"array"}}},
+    "knowledge":{"type":"object","properties":{"documents":{"type":"array"},"faqs":{"type":"array"},"reviews":{"type":"array"},"campaignHistory":{"type":"array"}}},
+    "learning":{"type":"object","properties":{"successfulPatterns":{"type":"array"},"failedPatterns":{"type":"array"},"experiments":{"type":"array"},"insights":{"type":"array"}}}
+  }
+}
