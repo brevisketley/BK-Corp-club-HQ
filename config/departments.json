@@ -1,0 +1,13 @@
+{
+  "floors": [
+    {"id":"customer-service","number":1,"name":"Customer Service","status":"ACTIVE"},
+    {"id":"marketing","number":2,"name":"Marketing","status":"ACTIVE"},
+    {"id":"sales","number":3,"name":"Sales","status":"ACTIVE"},
+    {"id":"research","number":4,"name":"Research & Intelligence","status":"ACTIVE"},
+    {"id":"creative","number":5,"name":"Creative & Content","status":"ACTIVE"},
+    {"id":"technology","number":6,"name":"Technology & Automation","status":"ACTIVE"},
+    {"id":"client-operations","number":7,"name":"Client Operations","status":"ACTIVE"},
+    {"id":"finance","number":8,"name":"Finance & Commercial","status":"ACTIVE"}
+  ],
+  "futureFloorsEnabled": true
+}
