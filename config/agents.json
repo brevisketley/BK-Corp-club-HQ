@@ -1,0 +1,24 @@
+{
+  "leadership": [
+    {"id":"spruce","name":"Spruce","title":"COO","department":"governance","reportsTo":"owner"},
+    {"id":"hannes","name":"Hannes","title":"Agent Manager / Orchestrator","department":"operations","reportsTo":"spruce"}
+  ],
+  "coreSpecialists": [
+    {"id":"marketing-strategist","name":"Marketing Strategist","floor":"marketing"},
+    {"id":"seo-specialist","name":"SEO Specialist","floor":"marketing"},
+    {"id":"social-media-strategist","name":"Social Media Strategist","floor":"marketing"},
+    {"id":"content-creator","name":"Content Creator","floor":"creative"},
+    {"id":"sales-outbound-strategist","name":"Sales Outbound Strategist","floor":"sales"},
+    {"id":"lead-generation-strategist","name":"Lead Generation Strategist","floor":"sales"},
+    {"id":"pipeline-analyst","name":"Pipeline Analyst","floor":"sales"},
+    {"id":"researcher","name":"Research Specialist","floor":"research"},
+    {"id":"backend-architect","name":"Backend Architect","floor":"technology"},
+    {"id":"frontend-developer","name":"Frontend Developer","floor":"technology"},
+    {"id":"devops-automator","name":"DevOps Automator","floor":"technology"},
+    {"id":"qa-tester","name":"QA / Test Automation Engineer","floor":"technology"},
+    {"id":"customer-success","name":"Customer Success Specialist","floor":"customer-service"},
+    {"id":"project-manager","name":"Senior Project Manager","floor":"client-operations"},
+    {"id":"finance-analyst","name":"Finance Analyst","floor":"finance"}
+  ],
+  "specialistPool": "Agency Agents repository provides additional specialists on demand."
+}
