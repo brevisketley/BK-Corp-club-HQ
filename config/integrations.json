@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-11",
+  "policy": {
+    "defaultState": "DISABLED",
+    "requireAuthenticatedInternalApi": true,
+    "requireHumanApprovalForExternalSideEffects": true,
+    "allowUnreviewedCommunitySkills": false,
+    "allowProductionSecretsInWorkerPrompts": false
+  },
+  "workers": [
+    {
+      "id": "sellbird",
+      "displayName": "Sellbird (formerly Harvey)",
+      "repository": "https://github.com/brevisketley/sellbird",
+      "upstreamRepository": "https://github.com/ethanplusai/sellbird",
+      "pinnedCommit": "d35aaeb0dc7812f8330ca10aa0a3d51b2c8baf25",
+      "license": "AGPL-3.0-only",
+      "runtime": {
+        "language": "python",
+        "version": "3.11+",
+        "deployment": "isolated-worker"
+      },
+      "department": "marketing",
+      "capabilities": [
+        "prospect-research",
+        "lead-enrichment",
+        "draft-outreach",
+        "reply-triage"
+      ],
+      "blockedCapabilities": [
+        "live-email-send",
+        "linkedin-browser-automation",
+        "unsupervised-external-messaging"
+      ],
+      "state": "DISABLED",
+      "approvalRequired": true,
+      "healthCheck": {
+        "configured": false,
+        "note": "Set an internal health endpoint only after the worker API and authentication are implemented."
+      },
+      "secrets": {
+        "source": "server-side-secret-store",
+        "requiredBeforeActivation": [
+          "SELLBIRD_CONFIG_PATH",
+          "SELLBIRD_SECRET_REF"
+        ],
+        "valuesStoredInRepository": false
+      }
+    },
+    {
+      "id": "openjarvis",
+      "displayName": "OpenJarvis",
+      "repository": "https://github.com/brevisketley/OpenJarvis",
+      "upstreamRepository": "https://github.com/open-jarvis/OpenJarvis",
+      "pinnedCommit": "1b78e51b0643d6744c47ac14d763ffeb6ef4a4fc",
+      "license": "Apache-2.0",
+      "runtime": {
+        "language": "python",
+        "version": "3.10-3.13",
+        "deployment": "isolated-worker"
+      },
+      "department": "research",
+      "capabilities": [
+        "read-only-research",
+        "summarization",
+        "approved-tool-orchestration"
+      ],
+      "blockedCapabilities": [
+        "unrestricted-shell",
+        "unreviewed-skill-installation",
+        "unapproved-file-write",
+        "unsupervised-messaging",
+        "continuous-autonomous-execution"
+      ],
+      "state": "DISABLED",
+      "approvalRequired": true,
+      "healthCheck": {
+        "configured": false,
+        "note": "Set an internal health endpoint only after a minimal, sandboxed server mode has been validated."
+      },
+      "secrets": {
+        "source": "server-side-secret-store",
+        "requiredBeforeActivation": [
+          "OPENJARVIS_CONFIG_PATH",
+          "OPENJARVIS_SECRET_REF"
+        ],
+        "valuesStoredInRepository": false
+      }
+    }
+  ],
+  "taskStates": [
+    "queued",
+    "running",
+    "awaiting_approval",
+    "succeeded",
+    "failed",
+    "cancelled"
+  ]
+}
