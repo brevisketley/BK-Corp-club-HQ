@@ -14,8 +14,8 @@ The HQ interface reads `config/external-workers.json` and shows repository, lice
 ### Sellbird
 
 - [Dependency audit](https://github.com/brevisketley/sellbird/actions/runs/43009152887): **passed** after updating setuptools and pytest constraints and upgrading the audit environment's setuptools/pytest versions.
-- [Tests](https://github.com/brevisketley/sellbird/actions/runs/43009152935): **queued at last check**. An earlier run failed because pytest 9 was paired with pytest-asyncio 0.26; the fork was updated to require pytest-asyncio 1.2.0 or later and a new run was queued.
-- [CodeQL](https://github.com/brevisketley/sellbird/actions/runs/43009152856): **running at last check**.
+- [Tests](https://github.com/brevisketley/sellbird/actions/runs/43009152935): **running at last check** across the six-platform/Python matrix. An earlier run failed because pytest 9 was paired with pytest-asyncio 0.26; the fork was updated to require pytest-asyncio 1.2.0 or later and the latest matrix is now executing.
+- [CodeQL](https://github.com/brevisketley/sellbird/actions/runs/43009152856): **passed**.
 
 ### OpenJarvis
 
@@ -43,7 +43,9 @@ The HQ static interface is not deployed publicly by this workflow. The current U
 - [x] Build and validate the HQ UI in GitHub Actions.
 - [x] Pass OpenJarvis CI, CodeQL and SAST.
 - [x] Pass Sellbird dependency audit after targeted dependency fixes.
-- [ ] Pass Sellbird tests and CodeQL on the current pinned revision.
+- [x] Pass Sellbird CodeQL on the current pinned revision.
+- [x] Pass Sellbird dependency audit and CodeQL on the current pinned revision.
+- [ ] Finish Sellbird cross-platform tests on the current pinned revision.
 - [ ] Implement authenticated server-side worker adapters and persistent task/audit state.
 - [ ] Provision isolated staging runtimes, health checks and server-side secret references.
 - [ ] Pass end-to-end security tests and owner sign-off before enabling either worker.
