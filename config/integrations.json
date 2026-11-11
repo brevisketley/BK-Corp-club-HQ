@@ -14,7 +14,7 @@
       "displayName": "Sellbird (formerly Harvey)",
       "repository": "https://github.com/brevisketley/sellbird",
       "upstreamRepository": "https://github.com/ethanplusai/sellbird",
-      "pinnedCommit": "d35aaeb0dc7812f8330ca10aa0a3d51b2c8baf25",
+      "pinnedCommit": "2a0a03b4547386e7d69d4caa9797bc43300bf1bb",
       "license": "AGPL-3.0-only",
       "runtime": {
         "language": "python",
