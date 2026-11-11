@@ -47,11 +47,11 @@
       "pinnedCommit": "af52e8dae9dd80f837ffaa37e9e74c61ac74f1e8",
       "securityChecks": {
         "codeql": {
-          "status": "queued",
+          "status": "running",
           "url": "https://github.com/brevisketley/sellbird/actions/runs/43009152856"
         },
         "dependencyAudit": {
-          "status": "queued",
+          "status": "passed",
           "url": "https://github.com/brevisketley/sellbird/actions/runs/43009152887"
         },
         "tests": {
@@ -113,7 +113,7 @@
           "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43008393163"
         },
         "tests": {
-          "status": "running",
+          "status": "passed",
           "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43008393305"
         }
       }
