@@ -14,3 +14,13 @@
 .worker-guard{margin-top:12px;padding:10px;border:1px solid #5a4b31;border-radius:8px;background:#211e18;color:#e3c58e;font:9px 'DM Mono';line-height:1.6}
 .worker-note{display:flex;align-items:flex-start;gap:10px;border:1px solid #28534f;border-radius:10px;background:#0d211f;color:#a6d8cf;padding:14px;font-size:11px;line-height:1.7;margin:4px 0 30px}
 .worker-note svg{flex:none;color:#60d4c4}
+
+
+/* External worker audit visibility */
+.worker-checks{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0;color:var(--muted,#8b95a7);font-size:12px}
+.worker-checks>div{display:flex;flex-wrap:wrap;gap:6px}
+.worker-checks a{display:inline-flex;align-items:center;padding:5px 8px;border:1px solid var(--border,#263449);border-radius:8px;text-decoration:none;font-size:11px;text-transform:capitalize}
+.worker-checks .check-passed{color:#72d6a2;border-color:#28694c}
+.worker-checks .check-running{color:#f3c66b;border-color:#806323}
+.worker-checks .check-failure{color:#ff8d8d;border-color:#803b3b}
+.worker-meta a{overflow-wrap:anywhere;text-decoration:none;color:var(--accent,#8ab4ff)}
