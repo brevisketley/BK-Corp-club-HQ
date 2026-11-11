@@ -1,0 +1,52 @@
+name: BK HQ build and worker registry validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build HQ UI
+        run: npm run build
+      - name: Validate worker registry
+        shell: python
+        run: |
+          import json
+          import re
+          from pathlib import Path
+
+          registry = json.loads(Path("config/integrations.json").read_text(encoding="utf-8"))
+          external = json.loads(Path("config/external-workers.json").read_text(encoding="utf-8"))
+          assert {w["id"] for w in registry["workers"]} == {"sellbird", "openjarvis"}
+          assert {w["id"] for w in external["workers"]} == {"sellbird", "openjarvis"}
+
+          for worker in registry["workers"]:
+              assert worker["state"] == "DISABLED"
+              assert re.fullmatch(r"[0-9a-f]{40}", worker["pinnedCommit"])
+              assert worker["secrets"]["valuesStoredInRepository"] is False
+
+          for worker in external["workers"]:
+              assert worker["enabled"] is False
+              assert worker["deploymentState"] == "FORKED_NOT_DEPLOYED"
+              assert re.fullmatch(r"[0-9a-f]{40}", worker["pinnedCommit"])
+              assert worker["healthCheck"] is None
+              assert worker["endpoint"] is None
+
+          print("HQ build and external-worker safety invariants passed.")
