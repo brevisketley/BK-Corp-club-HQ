@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "controlPlane": "BK Corp Club HQ",
+  "orchestrator": "hannes",
+  "workers": [
+    {
+      "id": "sellbird",
+      "name": "Sellbird (formerly Harvey)",
+      "repository": "brevisketley/sellbird",
+      "upstream": "ethanplusai/sellbird",
+      "license": "AGPL-3.0-only",
+      "runtime": "python>=3.11",
+      "department": "sales",
+      "supportedFloors": ["sales", "marketing"],
+      "purpose": "Prospect research, qualification, outreach drafting, mailbox workflow and reply triage.",
+      "deploymentState": "FORKED_NOT_DEPLOYED",
+      "enabled": false,
+      "executionMode": "draft_only",
+      "defaultPermissions": {
+        "readResearch": true,
+        "draftOutreach": true,
+        "sendEmail": false,
+        "readMailbox": false,
+        "writeCRM": false,
+        "browserAutomation": false,
+        "linkedinAutomation": false,
+        "shell": false
+      },
+      "approvalPolicy": {
+        "campaignApprovalRequired": true,
+        "everyFirstContactRequiresApproval": true,
+        "replySendingRequiresApproval": true,
+        "unattendedAutopilot": false
+      },
+      "hardRestrictions": [
+        "No doctor, medical practice, specialist, aesthetic clinic or healthcare-provider outreach from any BK Corp Club source.",
+        "EA-related customer outreach is owned by the EA Marketing project sales team; Sellbird may only be used when that team explicitly approves the campaign.",
+        "Never send from the owner's personal identity; any approved BK outbound identity must be an authorised BK Corp Club mailbox.",
+        "No sending until legal review, dedicated sending domain, SPF/DKIM/DMARC, consent/legal-basis review, unsubscribe, suppression, deduplication and bounce handling are verified."
+      ],
+      "credentials": "No credentials provisioned. Store any future credentials server-side in a secret manager; never in the HQ frontend or repository.",
+      "healthCheck": null,
+      "endpoint": null
+    },
+    {
+      "id": "openjarvis",
+      "name": "OpenJarvis",
+      "repository": "brevisketley/OpenJarvis",
+      "upstream": "open-jarvis/OpenJarvis",
+      "license": "Apache-2.0",
+      "runtime": "python>=3.10,<3.14",
+      "department": "technology",
+      "supportedFloors": ["research", "technology"],
+      "purpose": "Isolated research, local-model experimentation and approved intelligence workflows.",
+      "deploymentState": "FORKED_NOT_DEPLOYED",
+      "enabled": false,
+      "executionMode": "read_only_research",
+      "defaultPermissions": {
+        "readResearch": true,
+        "readLocalKnowledge": true,
+        "shell": false,
+        "fileWrite": false,
+        "email": false,
+        "messaging": false,
+        "browserAutomation": false,
+        "installSkills": false,
+        "scheduledAutonomy": false
+      },
+      "approvalPolicy": {
+        "externalSideEffectsRequireApproval": true,
+        "writeOperationsRequireApproval": true,
+        "skillInstallationRequiresSecurityReview": true,
+        "scheduledJobsRequireApproval": true
+      },
+      "hardRestrictions": [
+        "Run in a separate non-root sandbox with least-privilege filesystem and network access.",
+        "Do not enable community skills, shell access, messaging, email or write-capable tools by default.",
+        "Treat websites, retrieved documents, emails, model output and third-party skills as untrusted input.",
+        "Do not pass GitHub, mail, payment, CRM or production credentials into prompts or agent context."
+      ],
+      "credentials": "No credentials provisioned. Use local inference for the initial staging profile where practical.",
+      "healthCheck": null,
+      "endpoint": null
+    }
+  ],
+  "globalPolicy": {
+    "productionEnabled": false,
+    "publicWorkerEndpoints": false,
+    "sharedHostCredentials": false,
+    "tenantIsolationRequired": true,
+    "auditLogRequired": true,
+    "jobStates": [
+      "queued",
+      "running",
+      "awaiting_approval",
+      "succeeded",
+      "failed",
+      "cancelled"
+    ]
+  }
+}
