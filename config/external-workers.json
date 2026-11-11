@@ -11,7 +11,10 @@
       "license": "AGPL-3.0-only",
       "runtime": "python>=3.11",
       "department": "sales",
-      "supportedFloors": ["sales", "marketing"],
+      "supportedFloors": [
+        "sales",
+        "marketing"
+      ],
       "purpose": "Prospect research, qualification, outreach drafting, mailbox workflow and reply triage.",
       "deploymentState": "FORKED_NOT_DEPLOYED",
       "enabled": false,
@@ -40,7 +43,22 @@
       ],
       "credentials": "No credentials provisioned. Store any future credentials server-side in a secret manager; never in the HQ frontend or repository.",
       "healthCheck": null,
-      "endpoint": null
+      "endpoint": null,
+      "pinnedCommit": "5a994f9aa2abd526843b0bf9b2167290c35fd248",
+      "securityChecks": {
+        "codeql": {
+          "status": "running",
+          "url": "https://github.com/brevisketley/sellbird/actions/runs/43008922321"
+        },
+        "dependencyAudit": {
+          "status": "running",
+          "url": "https://github.com/brevisketley/sellbird/actions/runs/43008922363"
+        },
+        "tests": {
+          "status": "running",
+          "url": "https://github.com/brevisketley/sellbird/actions/runs/43008922413"
+        }
+      }
     },
     {
       "id": "openjarvis",
@@ -50,7 +68,10 @@
       "license": "Apache-2.0",
       "runtime": "python>=3.10,<3.14",
       "department": "technology",
-      "supportedFloors": ["research", "technology"],
+      "supportedFloors": [
+        "research",
+        "technology"
+      ],
       "purpose": "Isolated research, local-model experimentation and approved intelligence workflows.",
       "deploymentState": "FORKED_NOT_DEPLOYED",
       "enabled": false,
@@ -80,7 +101,22 @@
       ],
       "credentials": "No credentials provisioned. Use local inference for the initial staging profile where practical.",
       "healthCheck": null,
-      "endpoint": null
+      "endpoint": null,
+      "pinnedCommit": "1b78e51b0643d6744c47ac14d763ffeb6ef4a4fc",
+      "securityChecks": {
+        "codeql": {
+          "status": "passed",
+          "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43008393202"
+        },
+        "sast": {
+          "status": "passed",
+          "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43008393163"
+        },
+        "tests": {
+          "status": "running",
+          "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43008393305"
+        }
+      }
     }
   ],
   "globalPolicy": {
