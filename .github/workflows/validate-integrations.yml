@@ -1,0 +1,54 @@
+name: Validate worker integration registry
+
+on:
+  pull_request:
+    paths:
+      - "config/integrations.json"
+      - "docs/WORKER-INTEGRATION-RUNBOOK.md"
+      - ".github/workflows/validate-integrations.yml"
+  push:
+    branches: [main]
+    paths:
+      - "config/integrations.json"
+      - ".github/workflows/validate-integrations.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate JSON and safety invariants
+        shell: python
+        run: |
+          import json
+          import re
+          from pathlib import Path
+
+          path = Path("config/integrations.json")
+          registry = json.loads(path.read_text(encoding="utf-8"))
+          assert registry.get("schemaVersion") == 1
+          workers = registry.get("workers")
+          assert isinstance(workers, list) and len(workers) == 2
+          ids = {worker["id"] for worker in workers}
+          assert ids == {"sellbird", "openjarvis"}
+
+          for worker in workers:
+              assert worker["state"] == "DISABLED", f'{worker["id"]} must remain disabled until deployment gates pass'
+              assert re.fullmatch(r"[0-9a-f]{40}", worker["pinnedCommit"]), f'{worker["id"]} requires a full commit SHA'
+              assert worker["approvalRequired"] is True
+              assert worker["secrets"]["valuesStoredInRepository"] is False
+              assert worker["healthCheck"]["configured"] is False
+              assert worker["repository"].startswith("https://github.com/brevisketley/")
+              assert worker["upstreamRepository"].startswith("https://github.com/")
+              assert isinstance(worker["blockedCapabilities"], list) and worker["blockedCapabilities"]
+
+          assert registry["policy"]["requireAuthenticatedInternalApi"] is True
+          assert registry["policy"]["requireHumanApprovalForExternalSideEffects"] is True
+          print("Integration registry valid: both workers remain disabled by default.")
