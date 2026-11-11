@@ -55,7 +55,7 @@
           "url": "https://github.com/brevisketley/sellbird/actions/runs/43009152887"
         },
         "tests": {
-          "status": "queued",
+          "status": "running",
           "url": "https://github.com/brevisketley/sellbird/actions/runs/43009152935"
         }
       }
