@@ -44,19 +44,19 @@
       "credentials": "No credentials provisioned. Store any future credentials server-side in a secret manager; never in the HQ frontend or repository.",
       "healthCheck": null,
       "endpoint": null,
-      "pinnedCommit": "5a994f9aa2abd526843b0bf9b2167290c35fd248",
+      "pinnedCommit": "2a0a03b4547386e7d69d4caa9797bc43300bf1bb",
       "securityChecks": {
         "codeql": {
-          "status": "running",
-          "url": "https://github.com/brevisketley/sellbird/actions/runs/43008922321"
+          "status": "queued",
+          "url": "https://github.com/brevisketley/sellbird/actions/runs/43009069659"
         },
         "dependencyAudit": {
-          "status": "running",
-          "url": "https://github.com/brevisketley/sellbird/actions/runs/43008922363"
+          "status": "queued",
+          "url": "https://github.com/brevisketley/sellbird/actions/runs/43009069526"
         },
         "tests": {
-          "status": "running",
-          "url": "https://github.com/brevisketley/sellbird/actions/runs/43008922413"
+          "status": "queued",
+          "url": "https://github.com/brevisketley/sellbird/actions/runs/43009069806"
         }
       }
     },
