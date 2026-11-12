@@ -3,6 +3,12 @@ import{createRoot}from'react-dom/client';
 import{LayoutDashboard,FolderKanban,Building2,Users,Workflow,Zap,Activity,Gauge,ShieldCheck,Command,Check,BriefcaseBusiness,ArrowUpRight,Bot,Search}from'lucide-react';
 import externalWorkers from '../config/external-workers.json';
 import './style.css';
+import { createAuthClient } from '@neondatabase/auth';
+import { BetterAuthReactAdapter } from '@neondatabase/auth/react/adapters';
+import { NeonAuthUIProvider, AuthView } from '@neondatabase/auth/react/ui';
+import '@neondatabase/auth/ui/css';
+const authClient=createAuthClient(import.meta.env.VITE_NEON_AUTH_URL,{adapter:BetterAuthReactAdapter()});
+
 const projects=[
 ['ea-marketing','EA Marketing & Sales','Revenue','MQL5 product marketing, content distribution and sales growth.','YouTube · TikTok · MQL5'],
 ['saas-licensing','EA SaaS Licensing','Products','Independent customer licensing product. Separate identity, database and deployment.','Separate platform'],
@@ -35,4 +41,6 @@ return <div className="shell"><aside className="side"><div className="brand"><b>
 <footer>BK CORP CLUB HQ · Independent operating platform · EA SaaS Licensing remains separate</footer>
 </section></main></div>}
 function Project({p,chosen,onToggle}){return <article className={chosen?'project chosen':'project'}><div className="projecttop"><BriefcaseBusiness size={18}/><button className={chosen?'tick on':'tick'} onClick={()=>onToggle(p[0])}>{chosen?<Check size={14}/>:''}</button></div><label>{p[2].toUpperCase()}</label><h3>{p[1]}</h3><p>{p[3]}</p><small>{p[4]||'No integrations configured'}</small></article>}
-createRoot(document.getElementById('root')).render(<App/>);
+function AuthenticatedRoot(){const {data,isPending}=authClient.useSession();if(isPending)return <div className="auth-shell"><div className="auth-card">Securing BK HQ session…</div></div>;if(!data?.user)return <div className="auth-shell"><div className="auth-brand">BK CORP CLUB <span>HEADQUARTERS</span></div><div className="auth-card"><label>OWNER ACCESS</label><h1>Sign in to HQ</h1><p>Private operations workspace. Access is restricted to authorized HQ users.</p><AuthView path="sign-in"/></div></div>;if(data.user.email!=='brevisketley@gmail.com')return <div className="auth-shell"><div className="auth-card"><h1>Access restricted</h1><p>This account is not authorized as the HQ owner.</p><button onClick={()=>authClient.signOut()}>Sign out</button></div></div>;return <><div className="session-bar"><span>OWNER SESSION · {data.user.email}</span><button onClick={()=>authClient.signOut()}>Sign out</button></div><App/></>}
+function Root(){return <NeonAuthUIProvider authClient={authClient}><AuthenticatedRoot/></NeonAuthUIProvider>}
+createRoot(document.getElementById('root')).render(<Root/>);
