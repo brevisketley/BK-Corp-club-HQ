@@ -24,3 +24,5 @@
 .worker-checks .check-running{color:#f3c66b;border-color:#806323}
 .worker-checks .check-failure{color:#ff8d8d;border-color:#803b3b}
 .worker-meta a{overflow-wrap:anywhere;text-decoration:none;color:var(--accent,#8ab4ff)}
+
+.auth-shell{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;background:radial-gradient(ellipse at 50% 0%,#18304b,transparent 55%),#080d18}.auth-brand{font:700 13px 'DM Mono';letter-spacing:2px;color:#e8edf7;margin-bottom:25px}.auth-brand span{display:block;color:#5ed8c7;font-size:10px;margin-top:7px}.auth-card{width:min(460px,100%);padding:30px;border:1px solid #29415b;border-radius:16px;background:#101b2b;color:#e8edf7;box-shadow:0 25px 80px #0007}.auth-card h1{font-size:25px;margin:12px 0}.auth-card p{font-size:12px;color:#91a2b9;line-height:1.7}.session-bar{display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:9px 20px;background:#0b1220;border-bottom:1px solid #263950;color:#62d6c5;font:10px 'DM Mono'}.session-bar button{background:#17273a;border:1px solid #344a63;color:#e7eef8;border-radius:6px;padding:6px 10px;cursor:pointer}
