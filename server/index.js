@@ -20,7 +20,8 @@ async function ownerOnly(req,res,next){
   if(!h.startsWith('Bearer ')) return res.status(401).json({error:'Authentication required'});
   const {payload}=await jwtVerify(h.slice(7),JWKS);
   const email=String(payload.email||payload.user?.email||'').toLowerCase();
-  if(email!=='brevisketley@gmail.com') return res.status(403).json({error:'HQ owner access required'});
+  const subject=String(payload.sub||payload.userId||'');
+  if(subject!=='efad7efe-6b40-48f2-9a5a-91af6609d25f'&&email!=='brevisketley@gmail.com') return res.status(403).json({error:'HQ owner access required'});
   req.ownerEmail=email;next();
  }catch(e){return res.status(401).json({error:'Invalid or expired HQ session'});}
 }
