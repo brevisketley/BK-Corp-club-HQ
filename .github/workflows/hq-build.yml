@@ -54,6 +54,8 @@ jobs:
         shell: bash
         run: |
           curl --fail --silent --show-error --retry 12 --retry-delay 10 --retry-all-errors https://bk-corp-club-hq-api.onrender.com/health
-          code=$(curl --silent --output /tmp/hq-auth-check.json --write-out '%{http_code}' https://bk-corp-club-hq-api.onrender.com/api/tasks)
-          test "$code" = "401"
-          echo "HQ API health passed; unauthenticated task access correctly returned HTTP 401."
+          for path in portfolio tasks handoffs activity agents integrations departments metrics; do
+            code=$(curl --silent --output /tmp/hq-auth-check.json --write-out '%{http_code}' "https://bk-corp-club-hq-api.onrender.com/api/$path")
+            test "$code" = "401"
+          done
+          echo "HQ API health passed; all protected endpoints correctly returned HTTP 401 without an owner token."
