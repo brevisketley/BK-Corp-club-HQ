@@ -37,3 +37,5 @@
 .task-controls{display:grid;gap:6px;min-width:150px}.task-controls select{max-width:180px;text-transform:capitalize}
 
 .task-selects{display:grid;grid-template-columns:1fr 1fr;gap:8px}.task-selects select{background:#0a1220;color:#e8edf7;border:1px solid #344a63;border-radius:7px;padding:10px;font-size:12px;min-width:0}@media(max-width:650px){.task-selects{grid-template-columns:1fr}}
+
+.handoff-evidence{display:block;width:100%;box-sizing:border-box;margin-top:8px;background:#0a1220;color:#e8edf7;border:1px solid #344a63;border-radius:7px;padding:8px;font-size:11px}
