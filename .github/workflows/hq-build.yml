@@ -49,3 +49,11 @@ jobs:
               assert worker["endpoint"] is None
 
           print("HQ build and external-worker safety invariants passed.")
+      - name: Smoke-test live HQ API and owner gate
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          curl --fail --silent --show-error --retry 12 --retry-delay 10 --retry-all-errors https://bk-corp-club-hq-api.onrender.com/health
+          code=$(curl --silent --output /tmp/hq-auth-check.json --write-out '%{http_code}' https://bk-corp-club-hq-api.onrender.com/api/tasks)
+          test "$code" = "401"
+          echo "HQ API health passed; unauthenticated task access correctly returned HTTP 401."
