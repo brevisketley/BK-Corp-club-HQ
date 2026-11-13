@@ -18,3 +18,11 @@ jobs:
         run: |
           npm audit --json > audit.json || true
           node -e "const a=require('./audit.json'); console.log(JSON.stringify({metadata:a.metadata?.vulnerabilities, findings:Object.entries(a.vulnerabilities||{}).map(([name,v])=>({name,severity:v.severity,range:v.range,fixAvailable:v.fixAvailable,via:v.via.map(x=>typeof x==='string'?x:x.title)}))},null,2))"
+
+      - name: Inspect patched auth dependency releases
+        run: |
+          npm ls @neondatabase/auth @neondatabase/auth-ui better-auth zod --all || true
+          npm view @neondatabase/auth version dependencies --json
+          npm view @neondatabase/auth-ui version dependencies --json
+          npm view better-auth version --json
+          npm view zod version --json
