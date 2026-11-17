@@ -53,14 +53,16 @@ jobs:
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          url="https://ep-late-breeze-baqn7tmy.apirest.c-8.eu-central-1.aws.neon.tech/neondb/rest/v1/hq_tasks?select=id"
-          code=$(curl --silent --output /tmp/hq-data-api-check.json --write-out '%{http_code}' "$url")
-          if [ "$code" != "401" ] && [ "$code" != "403" ]; then
-            cat /tmp/hq-data-api-check.json
-            echo "Expected unauthenticated Data API request to be denied; received HTTP $code"
-            exit 1
-          fi
-          echo "Neon Data API rejects unauthenticated requests (HTTP $code). Owner-specific RLS is enforced in PostgreSQL."
+          base="https://ep-late-breeze-baqn7tmy.apirest.c-8.eu-central-1.aws.neon.tech/neondb/rest/v1"
+          for table in hq_projects hq_departments hq_agents hq_tasks hq_handoffs hq_integrations hq_activity hq_owner_settings hq_workflows hq_workflow_runs hq_workflow_steps; do
+            code=$(curl --silent --output /tmp/hq-data-api-check.json --write-out '%{http_code}' "$base/$table?select=*")
+            if [ "$code" != "401" ] && [ "$code" != "403" ]; then
+              echo "Expected unauthenticated access to $table to be denied; received HTTP $code"
+              cat /tmp/hq-data-api-check.json
+              exit 1
+            fi
+          done
+          echo "All 11 HQ tables reject unauthenticated Data API access."
       - name: Smoke-test deployed HQ frontend and auth routes
         if: github.event_name != 'pull_request'
         shell: bash
