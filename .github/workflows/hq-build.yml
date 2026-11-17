@@ -79,4 +79,8 @@ jobs:
             fi
             grep -qi "BK Corp Club HQ" /tmp/hq-auth.html
           done
-          echo "HQ root and SPA auth/reset routes serve the compiled application."
+          asset=$(grep -oE 'src="[^"]+\\.js"' /tmp/hq-auth.html | head -1 | cut -d '"' -f2)
+          test -n "$asset"
+          curl --fail --silent --show-error "https://bk-corp-club-hq.onrender.com$asset" -o /tmp/hq-app.js
+          grep -q "apirest.c-8.eu-central-1.aws.neon.tech" /tmp/hq-app.js
+          echo "HQ root, auth/reset routes and compiled Neon Data API configuration are live."
