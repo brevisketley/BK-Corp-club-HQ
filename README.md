@@ -31,6 +31,7 @@ BK Corp Club HQ is the standalone command centre for BK Corp Club's projects, de
 - Integration registry with connection status.
 - Activity/audit history and live operational metrics.
 - Dedicated Neon Data API with PostgreSQL row-level security.
+- Capability Map linking the 22 repository-installed Seed and Replica skills to the eight operating floors and existing specialist roles.
 - GitHub Actions build validation, live endpoint checks and dependency security audit.
 - Dedicated Render static frontend and dedicated HQ Neon project/database.
 ## Runtime truth and activation gates
@@ -56,11 +57,12 @@ The Render API service is billing-suspended and is not in the application reques
 
 - `ARCHITECTURE.md` — command hierarchy, system boundaries and operating model.
 - `config/agents.json` — leadership and specialist role registry.
+- `config/skills.json` — capability-to-department and capability-to-role mapping for the 22 Seed and Replica skills.
 - `config/departments.json` — eight department floors.
 - `config/external-workers.json` — isolated worker candidates and security gates.
 - `docs/AGENT_HANDOFF_PROTOCOL.md` — handoff contract.
 - `docs/TASK_STATE_SCHEMA.md` — task lifecycle and evidence contract.
-- `src/` — HQ frontend modules and direct Neon Data API client.
+- `src/` — HQ frontend modules, Capability Map and direct Neon Data API client.
 - `server/` — retained legacy API implementation; not used by the current frontend.
 
 ## Deployment

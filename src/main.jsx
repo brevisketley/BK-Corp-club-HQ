@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import{createRoot}from'react-dom/client';
-import{LayoutDashboard,FolderKanban,Building2,Users,Workflow,Zap,Activity,Gauge,ShieldCheck,Command,Check,BriefcaseBusiness,ClipboardList,ArrowUpRight,Bot,Search}from'lucide-react';
+import{LayoutDashboard,FolderKanban,Building2,Users,Workflow,Zap,Activity,Gauge,ShieldCheck,Command,Check,BriefcaseBusiness,ClipboardList,ArrowUpRight,Bot,Search,Network}from'lucide-react';
 import {BrowserRouter,Routes,Route,Navigate,useNavigate,Link as RouterLink,useParams} from 'react-router-dom';
 import Tasks from './Tasks';
 import Workflows from './Workflows';
@@ -10,6 +10,7 @@ import Performance from './Performance';
 import Integrations from './Integrations';
 import Departments from './Departments';
 import Agents from './Agents';
+import Capabilities from './Capabilities';
 import {dataApi,recordActivity} from './dataApi';
 import './style.css';
 import { createAuthClient } from '@neondatabase/auth';
@@ -40,12 +41,13 @@ useEffect(()=>{let live=true;(async()=>{try{const rows=await dataApi(authClient,
 const [view,setView]=useState('Overview'),[q,setQ]=useState(''),[group,setGroup]=useState('All');
 const selected=projects.filter(p=>active.includes(p[0]));
 function toggle(id){const n=active.includes(id)?active.filter(x=>x!==id):active.concat(id);setActive(n);localStorage.setItem('bkhq-projects',JSON.stringify(n));setPortfolioStatus('saving');(async()=>{try{await dataApi(authClient,'hq_owner_settings?owner_email=eq.brevisketley%40gmail.com',{method:'PATCH',body:{active_project_ids:n,updated_at:new Date().toISOString()},prefer:'return=representation'});await recordActivity(authClient,'portfolio_updated','portfolio','owner',{activeProjectIds:n});setPortfolioStatus('saved');}catch(e){console.error(e);setPortfolioStatus('save failed');}})();}
-const nav=[['Overview',LayoutDashboard],['Projects',FolderKanban],['Departments',Building2],['Agents',Users],['Tasks',ClipboardList],['Workflows',Workflow],['Integrations',Zap],['Activity & Audit',Activity],['Performance',Gauge]];
+const nav=[['Overview',LayoutDashboard],['Projects',FolderKanban],['Departments',Building2],['Capability Map',Network],['Agents',Users],['Tasks',ClipboardList],['Workflows',Workflow],['Integrations',Zap],['Activity & Audit',Activity],['Performance',Gauge]];
 return <div className="shell"><aside className="side"><div className="brand"><b>BK</b><span><strong>BK CORP CLUB</strong><small>HEADQUARTERS</small></span></div><label>COMMAND CENTRE</label>{nav.map(([n,I])=><button className={view===n?'nav active':'nav'} onClick={()=>setView(n)}><I size={17}/>{n}</button>)}<div className="sidefoot"><ShieldCheck size={15}/> Platform separation enforced</div></aside><main><header><span>BK HQ　/　{view}</span><small><i/> Owner-only HQ control</small></header><section>
 {view==='Overview'&&<Overview authClient={authClient} projects={selected} onNavigate={setView}/>}
 {view==='Projects'&&<><label>PORTFOLIO MANAGEMENT</label><h1>Project control</h1><p className="muted">Activate or deactivate ventures in the HQ portfolio. Changes are persisted to the dedicated HQ database.</p><div className="toolbar"><div className="search"><Search size={16}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search projects"/></div><select value={group} onChange={e=>setGroup(e.target.value)}>{['All',...new Set(projects.map(p=>p[2]))].map(g=><option>{g}</option>)}</select><small>{active.length} selected · {portfolioStatus}</small></div><div className="cards">{projects.filter(p=>(group==='All'||p[2]===group)&&p[1].toLowerCase().includes(q.toLowerCase())).map(p=><Project p={p} chosen={active.includes(p[0])} onToggle={toggle}/>)}</div></>}
 {view==='Departments'&&<Departments authClient={authClient}/>}
 {view==='Agents'&&<Agents authClient={authClient}/>}
+{view==='Capability Map'&&<Capabilities/>}
 {view==='Integrations'&&<Integrations authClient={authClient}/>}
 {view==='Tasks'&&<Tasks authClient={authClient}/>}{view==='Workflows'&&<Workflows authClient={authClient}/>}{view==='Activity & Audit'&&<Audit authClient={authClient}/>}{view==='Performance'&&<Performance authClient={authClient}/>} {false&&<div className="empty"><Command size={36}/><label>HQ MODULE</label><h1>{view}</h1><p>This module is scaffolded in the HQ command centre. Its live data, execution controls and audit history must be connected to the isolated HQ service before it can be marked operational.</p></div>}
 <footer>BK CORP CLUB HQ · Independent operating platform · EA SaaS Licensing remains separate</footer>

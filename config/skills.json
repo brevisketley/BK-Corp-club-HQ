@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "installedFrom": "brevisketley/bk-corp-club-ai-hub",
+  "installScope": "project_scoped_claude_code",
+  "repositoryInstalledAt": "2026-11-17",
+  "runtimeStatus": "not_connected",
+  "leadership": [
+    {
+      "id": "owner",
+      "name": "Owner",
+      "role": "Final authority and approvals"
+    },
+    {
+      "id": "spruce",
+      "name": "Spruce",
+      "role": "COO · priorities, revenue, oversight"
+    },
+    {
+      "id": "hannes",
+      "name": "Hannes",
+      "role": "Agent Manager · decomposition, delegation, QA and handoffs"
+    }
+  ],
+  "departments": [
+    {
+      "id": "customer-service",
+      "name": "Customer Service",
+      "roleIds": [
+        "customer-success"
+      ],
+      "skillIds": [],
+      "gap": "No dedicated customer-service or CRM automation skill is included in these two packs. Existing customer-service role and workflows remain in place."
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "roleIds": [
+        "marketing-strategist",
+        "seo-specialist",
+        "social-media-strategist"
+      ],
+      "skillIds": [
+        "replica-brand",
+        "replica-launch"
+      ]
+    },
+    {
+      "id": "sales",
+      "name": "Sales",
+      "roleIds": [
+        "sales-outbound-strategist",
+        "lead-generation-strategist",
+        "pipeline-analyst"
+      ],
+      "skillIds": [
+        "seed-closer",
+        "seed-coach"
+      ]
+    },
+    {
+      "id": "research",
+      "name": "Research & Intelligence",
+      "roleIds": [
+        "researcher"
+      ],
+      "skillIds": [
+        "seed-scout",
+        "seed-market",
+        "seed-investors",
+        "replica-recon",
+        "replica-entrepreneur"
+      ]
+    },
+    {
+      "id": "creative",
+      "name": "Creative & Content",
+      "roleIds": [
+        "content-creator"
+      ],
+      "skillIds": [
+        "seed-deck",
+        "replica-design"
+      ]
+    },
+    {
+      "id": "technology",
+      "name": "Technology & Automation",
+      "roleIds": [
+        "backend-architect",
+        "frontend-developer",
+        "devops-automator",
+        "qa-tester"
+      ],
+      "skillIds": [
+        "replica-architect",
+        "replica-backend",
+        "replica-build",
+        "replica-test",
+        "replica-diff",
+        "replica-deploy"
+      ]
+    },
+    {
+      "id": "client-operations",
+      "name": "Client Operations",
+      "roleIds": [
+        "project-manager"
+      ],
+      "skillIds": [
+        "seed-dataroom",
+        "seed-updates"
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Finance & Commercial",
+      "roleIds": [
+        "finance-analyst"
+      ],
+      "skillIds": [
+        "seed-model",
+        "seed-plan",
+        "seed-terms"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "id": "seed-scout",
+      "pack": "Seed",
+      "name": "Competitor Scout",
+      "summary": "Evidence-led competitor weaknesses from public App Store reviews.",
+      "department": "research",
+      "role": "researcher",
+      "mode": "research_only",
+      "sourcePath": ".claude/skills/seed-scout/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-market",
+      "pack": "Seed",
+      "name": "Market Sizer",
+      "summary": "TAM, SAM and SOM with sourced inputs and explicit assumptions.",
+      "department": "research",
+      "role": "researcher",
+      "mode": "research_only",
+      "sourcePath": ".claude/skills/seed-market/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-investors",
+      "pack": "Seed",
+      "name": "Investor Finder",
+      "summary": "Public-source investor discovery and fit ranking.",
+      "department": "research",
+      "role": "researcher",
+      "mode": "research_only",
+      "sourcePath": ".claude/skills/seed-investors/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-model",
+      "pack": "Seed",
+      "name": "Financial Modeler",
+      "summary": "36-month projections, unit economics, runway and use of funds.",
+      "department": "finance",
+      "role": "finance-analyst",
+      "mode": "scenario_only",
+      "sourcePath": ".claude/skills/seed-model/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-plan",
+      "pack": "Seed",
+      "name": "Business Planner",
+      "summary": "Investor-ready business plan grounded in approved market and model data.",
+      "department": "finance",
+      "role": "finance-analyst",
+      "mode": "draft_only",
+      "sourcePath": ".claude/skills/seed-plan/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-deck",
+      "pack": "Seed",
+      "name": "Pitch Deck Designer",
+      "summary": "10-slide pitch deck with source-traceable figures and lint checks.",
+      "department": "creative",
+      "role": "content-creator",
+      "mode": "draft_only",
+      "sourcePath": ".claude/skills/seed-deck/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-closer",
+      "pack": "Seed",
+      "name": "Investor Closer",
+      "summary": "Investor outreach drafts, reply triage and follow-up tracking.",
+      "department": "sales",
+      "role": "sales-outbound-strategist",
+      "mode": "draft_only_approval_required",
+      "sourcePath": ".claude/skills/seed-closer/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-coach",
+      "pack": "Seed",
+      "name": "Pitch Coach",
+      "summary": "Investor call preparation and objection rehearsal.",
+      "department": "sales",
+      "role": "sales-outbound-strategist",
+      "mode": "preparation_only",
+      "sourcePath": ".claude/skills/seed-coach/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-terms",
+      "pack": "Seed",
+      "name": "Term Sheet Reader",
+      "summary": "Plain-language term sheet review and dilution calculations.",
+      "department": "finance",
+      "role": "finance-analyst",
+      "mode": "analysis_only",
+      "sourcePath": ".claude/skills/seed-terms/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-dataroom",
+      "pack": "Seed",
+      "name": "Data Room Builder",
+      "summary": "Investor data-room checklist and missing-document tracking.",
+      "department": "client-operations",
+      "role": "project-manager",
+      "mode": "document_preparation",
+      "sourcePath": ".claude/skills/seed-dataroom/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "seed-updates",
+      "pack": "Seed",
+      "name": "Investor Updates",
+      "summary": "Periodic investor and prospect update drafting.",
+      "department": "client-operations",
+      "role": "project-manager",
+      "mode": "draft_only",
+      "sourcePath": ".claude/skills/seed-updates/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-recon",
+      "pack": "Replica",
+      "name": "Product Recon",
+      "summary": "Screen, flow, component, data-model and feature inventory.",
+      "department": "research",
+      "role": "researcher",
+      "mode": "read_only_research",
+      "sourcePath": ".claude/skills/replica-recon/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-architect",
+      "pack": "Replica",
+      "name": "Solution Architect",
+      "summary": "Stack, schema, API and implementation sequencing.",
+      "department": "technology",
+      "role": "backend-architect",
+      "mode": "design_only",
+      "sourcePath": ".claude/skills/replica-architect/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-design",
+      "pack": "Replica",
+      "name": "Design System",
+      "summary": "Accessible design tokens, component specs and contrast checks.",
+      "department": "creative",
+      "role": "content-creator",
+      "mode": "design_only",
+      "sourcePath": ".claude/skills/replica-design/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-build",
+      "pack": "Replica",
+      "name": "Application Builder",
+      "summary": "Clean-room screen and workflow implementation.",
+      "department": "technology",
+      "role": "frontend-developer",
+      "mode": "code_changes_require_review",
+      "sourcePath": ".claude/skills/replica-build/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-backend",
+      "pack": "Replica",
+      "name": "Backend Engineer",
+      "summary": "Auth, database, payments and official API integrations.",
+      "department": "technology",
+      "role": "backend-architect",
+      "mode": "secrets_and_owner_approval_required",
+      "sourcePath": ".claude/skills/replica-backend/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-test",
+      "pack": "Replica",
+      "name": "QA & Test",
+      "summary": "Flow-based test plans, E2E checks and severity-ranked defects.",
+      "department": "technology",
+      "role": "qa-tester",
+      "mode": "test_only",
+      "sourcePath": ".claude/skills/replica-test/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-diff",
+      "pack": "Replica",
+      "name": "Parity & Diff",
+      "summary": "Feature parity, visual structure and behaviour gap analysis.",
+      "department": "technology",
+      "role": "qa-tester",
+      "mode": "analysis_only",
+      "sourcePath": ".claude/skills/replica-diff/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-entrepreneur",
+      "pack": "Replica",
+      "name": "Customer Voice",
+      "summary": "Review analysis, complaint themes and product opportunities.",
+      "department": "research",
+      "role": "researcher",
+      "mode": "public_review_analysis",
+      "sourcePath": ".claude/skills/replica-entrepreneur/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-brand",
+      "pack": "Replica",
+      "name": "Brand Builder",
+      "summary": "Original naming, brand system and clean-room asset checks.",
+      "department": "marketing",
+      "role": "marketing-strategist",
+      "mode": "draft_only",
+      "sourcePath": ".claude/skills/replica-brand/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-launch",
+      "pack": "Replica",
+      "name": "Launch Planner",
+      "summary": "Landing page, pricing and store-listing preparation.",
+      "department": "marketing",
+      "role": "marketing-strategist",
+      "mode": "draft_only",
+      "sourcePath": ".claude/skills/replica-launch/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    },
+    {
+      "id": "replica-deploy",
+      "pack": "Replica",
+      "name": "Deployment Engineer",
+      "summary": "Production preflight and deployment preparation.",
+      "department": "technology",
+      "role": "devops-automator",
+      "mode": "deployment_requires_owner_approval",
+      "sourcePath": ".claude/skills/replica-deploy/SKILL.md",
+      "runtimeStatus": "repository_installed_not_runtime_connected"
+    }
+  ]
+}
