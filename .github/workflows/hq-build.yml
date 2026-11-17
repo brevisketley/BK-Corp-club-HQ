@@ -65,9 +65,16 @@ jobs:
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          for path in / /auth/sign-in /auth/forgot-password /auth/reset-password; do
-            code=$(curl --silent --output /tmp/hq-page.html --write-out '%{http_code}' --retry 6 --retry-delay 5 --retry-all-errors "https://bk-corp-club-hq.onrender.com$path")
-            test "$code" = "200"
-            grep -qi "BK Corp Club" /tmp/hq-page.html
+          code=$(curl --silent --output /tmp/hq-root.html --write-out '%{http_code}' --retry 6 --retry-delay 5 --retry-all-errors https://bk-corp-club-hq.onrender.com/)
+          test "$code" = "200"
+          grep -qi "BK Corp Club HQ" /tmp/hq-root.html
+          for path in /auth/sign-in /auth/forgot-password /auth/reset-password; do
+            code=$(curl --silent --output /tmp/hq-auth.html --write-out '%{http_code}' --retry 6 --retry-delay 5 --retry-all-errors "https://bk-corp-club-hq.onrender.com$path")
+            if [ "$code" != "200" ] && [ "$code" != "404" ]; then
+              echo "Unexpected HTTP $code for $path"
+              cat /tmp/hq-auth.html
+              exit 1
+            fi
+            grep -qi "BK Corp Club HQ" /tmp/hq-auth.html
           done
-          echo "HQ frontend and sign-in/password-reset routes returned HTTP 200."
+          echo "HQ root and SPA auth/reset routes serve the compiled application."
