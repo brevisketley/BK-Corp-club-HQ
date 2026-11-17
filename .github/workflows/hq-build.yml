@@ -61,3 +61,13 @@ jobs:
             exit 1
           fi
           echo "Neon Data API rejects unauthenticated requests (HTTP $code). Owner-specific RLS is enforced in PostgreSQL."
+      - name: Smoke-test deployed HQ frontend and auth routes
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          for path in / /auth/sign-in /auth/forgot-password /auth/reset-password; do
+            code=$(curl --silent --output /tmp/hq-page.html --write-out '%{http_code}' --retry 6 --retry-delay 5 --retry-all-errors "https://bk-corp-club-hq.onrender.com$path")
+            test "$code" = "200"
+            grep -qi "BK Corp Club" /tmp/hq-page.html
+          done
+          echo "HQ frontend and sign-in/password-reset routes returned HTTP 200."
