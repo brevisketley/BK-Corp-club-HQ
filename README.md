@@ -26,7 +26,7 @@ BK Corp Club HQ is the standalone command centre for BK Corp Club's projects, de
 - Persistent project portfolio selection.
 - Eight department floors and 17 registered specialist roles.
 - Persistent task queue, agent assignments, handoffs and evidence capture.
-- Four reusable workflow templates with persistent runs, ordered steps, QA evidence and owner approval gates.
+- Five reusable workflow templates with persistent runs, ordered steps, QA evidence and owner approval gates.
 - Spruce COO dashboard with live task, handoff, workflow and activity metrics.
 - Integration registry with connection status.
 - Activity/audit history and live operational metrics.
