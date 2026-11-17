@@ -79,7 +79,7 @@ jobs:
             fi
             grep -qi "BK Corp Club HQ" /tmp/hq-auth.html
           done
-          asset=$(grep -oE 'src="[^"]+\\.js"' /tmp/hq-auth.html | head -1 | cut -d '"' -f2)
+          asset=$(grep -oE 'src="[^"]+\.js"' /tmp/hq-auth.html | head -1 | cut -d '"' -f2)
           test -n "$asset"
           curl --fail --silent --show-error "https://bk-corp-club-hq.onrender.com$asset" -o /tmp/hq-app.js
           grep -q "apirest.c-8.eu-central-1.aws.neon.tech" /tmp/hq-app.js
