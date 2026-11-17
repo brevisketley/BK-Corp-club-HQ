@@ -55,7 +55,7 @@
           "url": "https://github.com/brevisketley/sellbird/actions/runs/43009152887"
         },
         "tests": {
-          "status": "running",
+          "status": "passed",
           "url": "https://github.com/brevisketley/sellbird/actions/runs/43009152935"
         }
       }
@@ -117,7 +117,7 @@
           "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43008393305"
         },
         "dependencyRemediation": {
-          "status": "queued",
+          "status": "passed",
           "url": "https://github.com/brevisketley/OpenJarvis/actions/runs/43009348277"
         }
       }
