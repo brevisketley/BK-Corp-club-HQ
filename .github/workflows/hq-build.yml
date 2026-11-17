@@ -49,6 +49,32 @@ jobs:
               assert worker["endpoint"] is None
 
           print("HQ build and external-worker safety invariants passed.")
+      - name: Validate installed skill capability map
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          data = json.loads(Path("config/skills.json").read_text(encoding="utf-8"))
+          skills = data["skills"]
+          departments = data["departments"]
+          assert len(skills) == 22
+          assert len({s["id"] for s in skills}) == 22
+          assert len(departments) == 8
+          skill_ids = {s["id"] for s in skills}
+          mapped = [skill_id for d in departments for skill_id in d["skillIds"]]
+          assert set(mapped) == skill_ids
+          assert len(mapped) == len(set(mapped))
+          assert all(s["runtimeStatus"] == "repository_installed_not_runtime_connected" for s in skills)
+          assert data["runtimeStatus"] == "not_connected"
+          closer = next(s for s in skills if s["id"] == "seed-closer")
+          assert closer["mode"] == "draft_only_approval_required"
+          deploy = next(s for s in skills if s["id"] == "replica-deploy")
+          assert deploy["mode"] == "deployment_requires_owner_approval"
+          customer_service = next(d for d in departments if d["id"] == "customer-service")
+          assert customer_service["gap"]
+          print("22 skills, 8 departments, unique role mapping and approval gates validated.")
+
       - name: Smoke-test Neon Data API owner isolation
         if: github.event_name != 'pull_request'
         shell: bash

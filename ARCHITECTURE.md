@@ -23,6 +23,7 @@ BK Corp Club HQ is the standalone operating system for BK Corp Club. It is separ
 - HQ Lobby and project portfolio.
 - Department floor dashboards.
 - Agent registry and runtime state.
+- Skill/capability catalogue mapping reusable playbooks to departments and registered roles.
 - Task and handoff engine with evidence and approvals.
 - Client workspaces and Client Brain.
 - Integration registry and scoped tool adapters.
@@ -39,7 +40,8 @@ BK Corp Club HQ is the standalone operating system for BK Corp Club. It is separ
 - Neon Data API is enabled and authenticated with Neon Auth.
 - All 11 `hq_*` tables have RLS enabled. The authenticated role has access only when the JWT `sub` matches the HQ owner ID. The anonymous role has no table privileges. Owner and non-owner RLS behavior was tested using simulated JWT claims.
 - The frontend uses the Neon Data API directly. The separate Render API service is billing-suspended and is not part of the current data path.
-- Current UI modules: Overview, Projects, Departments, Agents, Tasks, Workflows, Integrations, Activity & Audit, Performance.
+- Current UI modules: Overview, Projects, Departments, Capability Map, Agents, Tasks, Workflows, Integrations, Activity & Audit, Performance.
+- Capability Map: 22 project-installed Seed and Replica skills mapped to eight department floors and specialist roles; skill presence does not indicate an autonomous runtime.
 - Current persisted registry: 12 projects, 8 departments, 17 agent roles, 12 integration records and 5 workflow templates.
 ## Runtime and capability states
 
