@@ -1,32 +1,16 @@
 # BK Corp Club HQ
 
-BK Corp Club agency headquarters and central operating system for managing departments, teams, projects, clients, and business operations as we grow.
-
-## Vision
-A standalone desktop-first agency operating system where Brevis can enter HQ, view departments as hotel-style floors, speak to agents, assign objectives, monitor execution, and receive verified results.
+BK Corp Club HQ is the standalone command centre for BK Corp Club's projects, departments, specialist roles, workflows, integrations, approvals, audit history and commercial operations.
 
 ## Command structure
-- **Brevis** — Owner / final authority
-- **Spruce** — COO / operational oversight and opportunity identification
-- **Hannes** — Agent Manager / Orchestrator / delegation and execution control
-- **Department agents** — specialist execution workforce
 
-## Core capabilities
-- Hotel-style department floors
-- Agent avatars and live status
-- Hannes Command Centre
-- Direct agent conversations
-- Client workspaces
-- Client Brain containing brand, audience, commercial rules and knowledge
-- Multi-step workflows with approvals
-- Real tool execution through integrations
-- Activity, evidence and audit history
-- Performance analytics
-- Learning loop that updates client intelligence after each workflow
-- Configurable future departments/floors
-- Desktop application packaging
+1. **Owner** — final authority and approvals.
+2. **Spruce** — COO; operational priorities, revenue opportunities, oversight and performance.
+3. **Hannes** — Agent Manager / Orchestrator; task decomposition, delegation, handoffs, QA routing and sign-off.
+4. **Department specialists** — bounded execution roles reporting through Hannes.
 
-## Initial floors
+## Eight departments
+
 1. Customer Service
 2. Marketing
 3. Sales
@@ -36,18 +20,51 @@ A standalone desktop-first agency operating system where Brevis can enter HQ, vi
 7. Client Operations
 8. Finance & Commercial
 
+## Current deployed capabilities
+
+- Owner-only sign-in and protected HQ workspace.
+- Persistent project portfolio selection.
+- Eight department floors and 17 registered specialist roles.
+- Persistent task queue, agent assignments, handoffs and evidence capture.
+- Integration registry with connection status.
+- Activity/audit history and live operational metrics.
+- Dedicated Neon Data API with PostgreSQL row-level security.
+- GitHub Actions build validation, live endpoint checks and dependency security audit.
+- Dedicated Render static frontend and dedicated HQ Neon project/database.
+
+## Runtime truth and activation gates
+
+The 17 roles are registered, not 17 autonomous workers. Spruce and Hannes are the operating roles in the command model; they are not independent background processes. Sellbird and OpenJarvis are separately forked, security-reviewed candidates but remain disabled and undeployed. No agent is marked live until its runtime, credentials, least-privilege tool access, health check, task lease/cancellation controls and evidence loop have been tested.
+
+The Render API service is billing-suspended and is not in the application request path. The frontend now uses the dedicated Neon Data API directly. The Data API is configured for Neon Auth and owner-only RLS; anonymous access has no table privileges. The HQ owner must complete email verification and set a password through the authentication flow before the first interactive session can be confirmed.
+
+## Non-negotiable separation
+
+- HQ has its own repository, Neon project, database, authentication and deployment.
+- BK Corp Club SaaS Licensing remains a separate product and is not used as HQ identity or storage.
+- No SaaS production services, users, licenses or databases may be modified by HQ work.
+- No doctor, medical practice, specialist, aesthetic clinic or healthcare-provider outreach from any BK source.
+- External sending, publishing, payments, account changes and EA file release require explicit owner approval.
+- EA files must never be released or made downloadable without explicit owner consent.
+
 ## Operating loop
-**Objective -> Hannes -> Research/Strategy -> Specialist execution -> Review -> Results -> Analytics -> Learning -> Client Brain -> next cycle**
+
+**Owner objective → Spruce prioritisation → Hannes decomposition and delegation → specialist execution → evidence and QA → owner approval where required → completion and learning.**
 
 ## Repository structure
-- `ARCHITECTURE.md` — system architecture and operating model
-- `config/agents.json` — leadership and core specialist registry
-- `config/departments.json` — configurable floor registry
-- `config/client-brain.schema.json` — client intelligence contract
-- `workflows/marketing-campaign.workflow.json` — first end-to-end workflow definition
 
-## Separation
-This repository is an independent venture and must not depend on or modify the existing BK Corp Club SaaS project.
+- `ARCHITECTURE.md` — command hierarchy, system boundaries and operating model.
+- `config/agents.json` — leadership and specialist role registry.
+- `config/departments.json` — eight department floors.
+- `config/external-workers.json` — isolated worker candidates and security gates.
+- `docs/AGENT_HANDOFF_PROTOCOL.md` — handoff contract.
+- `docs/TASK_STATE_SCHEMA.md` — task lifecycle and evidence contract.
+- `src/` — HQ frontend modules and direct Neon Data API client.
+- `server/` — retained legacy API implementation; not used by the current frontend.
 
-## Build principle
-The UI is the control room; the orchestration and tool layer performs the actual work. Agents must never be represented as active merely because they exist in the registry.
+## Deployment
+
+- Frontend: https://bk-corp-club-hq.onrender.com
+- Repository: https://github.com/brevisketley/BK-Corp-club-HQ
+
+All frontend data requests use `VITE_NEON_DATA_API_URL` and a short-lived Neon Auth JWT. Do not put database connection strings or privileged secrets in frontend variables.
