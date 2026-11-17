@@ -18,7 +18,8 @@
     "express": "latest",
     "cors": "latest",
     "pg": "latest",
-    "jose": "latest"
+    "jose": "latest",
+    "react-router-dom": "latest"
   },
   "overrides": {
     "better-auth": "1.7.22",
