@@ -40,7 +40,7 @@ BK Corp Club HQ is the standalone operating system for BK Corp Club. It is separ
 - All 11 `hq_*` tables have RLS enabled. The authenticated role has access only when the JWT `sub` matches the HQ owner ID. The anonymous role has no table privileges. Owner and non-owner RLS behavior was tested using simulated JWT claims.
 - The frontend uses the Neon Data API directly. The separate Render API service is billing-suspended and is not part of the current data path.
 - Current UI modules: Overview, Projects, Departments, Agents, Tasks, Workflows, Integrations, Activity & Audit, Performance.
-- Current persisted registry: 12 projects, 8 departments, 17 agent roles, 12 integration records and 4 workflow templates.
+- Current persisted registry: 12 projects, 8 departments, 17 agent roles, 12 integration records and 5 workflow templates.
 ## Runtime and capability states
 
 A registry record is not an active agent. A role may be marked live only after all of the following are present and verified:
