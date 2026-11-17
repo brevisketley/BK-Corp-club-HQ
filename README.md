@@ -20,18 +20,19 @@ BK Corp Club HQ is the standalone command centre for BK Corp Club's projects, de
 7. Client Operations
 8. Finance & Commercial
 
-## Current deployed capabilities
+## ## Current deployed capabilities
 
-- Owner-only sign-in and protected HQ workspace.
+- Owner-only sign-in and protected HQ workspace, including first-time password reset and email verification routes.
 - Persistent project portfolio selection.
 - Eight department floors and 17 registered specialist roles.
 - Persistent task queue, agent assignments, handoffs and evidence capture.
+- Four reusable workflow templates with persistent runs, ordered steps, QA evidence and owner approval gates.
+- Spruce COO dashboard with live task, handoff, workflow and activity metrics.
 - Integration registry with connection status.
 - Activity/audit history and live operational metrics.
 - Dedicated Neon Data API with PostgreSQL row-level security.
 - GitHub Actions build validation, live endpoint checks and dependency security audit.
 - Dedicated Render static frontend and dedicated HQ Neon project/database.
-
 ## Runtime truth and activation gates
 
 The 17 roles are registered, not 17 autonomous workers. Spruce and Hannes are the operating roles in the command model; they are not independent background processes. Sellbird and OpenJarvis are separately forked, security-reviewed candidates but remain disabled and undeployed. No agent is marked live until its runtime, credentials, least-privilege tool access, health check, task lease/cancellation controls and evidence loop have been tested.
