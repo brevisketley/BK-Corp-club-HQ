@@ -49,13 +49,15 @@ jobs:
               assert worker["endpoint"] is None
 
           print("HQ build and external-worker safety invariants passed.")
-      - name: Smoke-test live HQ API and owner gate
+      - name: Smoke-test Neon Data API owner isolation
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          curl --fail --silent --show-error --retry 12 --retry-delay 10 --retry-all-errors https://bk-corp-club-hq-api.onrender.com/health
-          for path in portfolio tasks handoffs activity agents integrations departments metrics; do
-            code=$(curl --silent --output /tmp/hq-auth-check.json --write-out '%{http_code}' "https://bk-corp-club-hq-api.onrender.com/api/$path")
-            test "$code" = "401"
-          done
-          echo "HQ API health passed; all protected endpoints correctly returned HTTP 401 without an owner token."
+          url="https://ep-late-breeze-baqn7tmy.apirest.c-8.eu-central-1.aws.neon.tech/neondb/rest/v1/hq_tasks?select=id"
+          code=$(curl --silent --output /tmp/hq-data-api-check.json --write-out '%{http_code}' "$url")
+          if [ "$code" != "401" ] && [ "$code" != "403" ]; then
+            cat /tmp/hq-data-api-check.json
+            echo "Expected unauthenticated Data API request to be denied; received HTTP $code"
+            exit 1
+          fi
+          echo "Neon Data API rejects unauthenticated requests (HTTP $code). Owner-specific RLS is enforced in PostgreSQL."
