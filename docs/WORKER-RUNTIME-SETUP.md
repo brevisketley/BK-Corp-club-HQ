@@ -8,7 +8,7 @@ Both forks are audited and pinned. Their latest required repository checks passe
 - OpenJarvis: CI, CodeQL, SAST and the targeted dependency-remediation workflow.
 - BK HQ: build, worker-registry validation and dependency security audit.
 
-The BK HQ integrations page is deployed as a static site, but the existing HQ API service is **suspended by Render billing**. The static site is not a worker runtime and cannot securely host agent execution.
+The BK HQ integrations page is deployed as a static site, but the existing HQ API service is **suspended by Render billing**. The static site is not a worker runtime and cannot securely host agent execution. The latest bootstrap and runtime runbook commits are queued/building for automatic deployment to the existing HQ static site.
 
 ## Runtime architecture decision
 
@@ -30,7 +30,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 
 The script clones both BK forks, checks out the exact audited commits, creates separate environments, installs core dependencies, and runs CLI help smoke tests. It does not create a Sellbird `.env`, connect a mailbox, configure an LLM account, enable sending, install OpenJarvis community skills, or start scheduled autonomy.
 
-Prerequisites: Git for Windows, Python 3.12, and uv. The script stops if any prerequisite, revision check, dependency install, or smoke test fails.
+Prerequisites: Git for Windows, Python 3.12, uv, and the Rust toolchain (rustup/cargo) for OpenJarvis's native Rust extension. The script stops if any prerequisite, revision check, dependency install, or smoke test fails.
 
 ## Acceptance gates after local installation
 
