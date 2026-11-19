@@ -16,7 +16,7 @@
         "marketing"
       ],
       "purpose": "Prospect research, qualification, outreach drafting, mailbox workflow and reply triage.",
-      "deploymentState": "FORKED_NOT_DEPLOYED",
+      "deploymentState": "FORKED_TESTED_NOT_DEPLOYED",
       "enabled": false,
       "executionMode": "draft_only",
       "defaultPermissions": {
@@ -73,7 +73,7 @@
         "technology"
       ],
       "purpose": "Isolated research, local-model experimentation and approved intelligence workflows.",
-      "deploymentState": "FORKED_NOT_DEPLOYED",
+      "deploymentState": "FORKED_TESTED_NOT_DEPLOYED",
       "enabled": false,
       "executionMode": "read_only_research",
       "defaultPermissions": {
